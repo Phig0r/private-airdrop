@@ -1,0 +1,27 @@
+[package]
+name = "crypto-lib"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["rlib", "cdylib"]
+
+[dependencies]
+hex = "0.4.3"
+serde = { version = "1.0.229", features = ["derive"] }
+num-bigint = "0.4"
+serde_json = "1.0"
+k256 = { version = "0.13", features = ["ecdsa"] }
+sha3 = "0.10"
+sha2 = "0.10"
+hmac = "0.12"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+barretenberg-rs = "=5.2.0"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+getrandom = { version = "0.2", features = ["js"] }
+wasm-bindgen = "=0.2.114"
+js-sys = "=0.3.91"
+serde-wasm-bindgen = "0.6"
+

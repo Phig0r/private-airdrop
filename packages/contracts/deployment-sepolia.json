@@ -1,0 +1,15 @@
+{
+  "chainId": 11155111,
+  "owner": "0x790942b83188eD05B69F054bE5E46Ee5D8aa6b50",
+  "relayer": "0xbaD111aD4f04A21C4264043183AD6BBeFD4dcCed",
+  "demoEnabled": true,
+  "contracts": {
+    "RelationsLib": "0x5f207d4b9a2485ad093d12bf65e3ccd14ffbdbf2",
+    "ZKTranscriptLib": "0xf8ae8e2da8a481f1406ec88d4617ec853b171407",
+    "AdminFacet": "0xf77615e47cb10a391bef89fbd19ea51dd4c8bfe9",
+    "UserFacet": "0xf9840dec8032b33abc14cb0fe4d998d88953693e",
+    "HonkVerifier": "0xbbcb956f0db7d54bd4df48bba37c0e71c035e6e2",
+    "Diamond": "0x0b8999649188d5a4d562638f833dea45622a7d65",
+    "DemoFaucet": "0xf3b74bc7f1dcdb6521871523360a445efa7b4acb"
+  }
+}

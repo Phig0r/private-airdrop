@@ -1,0 +1,16 @@
+{
+  "name": "@airdrop/server",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "ethers": "^6.17.0",
+    "mongodb": "^6.21.0"
+  }
+}

@@ -1,0 +1,20 @@
+node_modules/
+**/.env
+**/.env.*
+!**/.env.example
+packages/server/private-keys/
+**/dist/
+**/target/
+packages/contracts/out/
+packages/contracts/cache/
+packages/contracts/broadcast/
+
+# Local editor settings, OS metadata and diagnostic output
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+**/coverage/
+**/test-results/
+**/playwright-report/

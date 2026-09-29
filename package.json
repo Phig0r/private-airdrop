@@ -1,0 +1,19 @@
+{
+  "name": "Airdrop",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "pnpm --filter circuits test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.21.0",
+      "onFail": "download"
+    }
+  },
+  "type": "module"
+}

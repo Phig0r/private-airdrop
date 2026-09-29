@@ -1,0 +1,15 @@
+{
+  "name": "@airdrop/contracts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:verifier": "node scripts/generate-verifier.mjs",
+    "abi": "node scripts/export-abi.mjs",
+    "deploy": "node scripts/deploy.mjs",
+    "test:fixture": "node scripts/proof-fixture.mjs"
+  },
+  "devDependencies": {
+    "@aztec/bb.js": "5.2.0",
+    "@noir-lang/noir_js": "1.0.0-beta.26"
+  }
+}

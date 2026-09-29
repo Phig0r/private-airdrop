@@ -1,0 +1,6 @@
+{
+  "barretenberg": "5.2.0",
+  "target": "evm",
+  "circuitSha256": "03136e0396b8a6a977dc249e74955d55deb3cfaa6586ad45ad73baa578de08d9",
+  "verificationKeySha256": "51e79468c71830ab954d2efc884ac655763a26f91320a78676ad691fe922c201"
+}

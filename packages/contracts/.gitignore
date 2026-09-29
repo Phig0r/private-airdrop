@@ -1,0 +1,19 @@
+# Compiler files
+cache/
+out/
+
+# Commonly ignored directories
+.logs/
+.ignore/
+
+# Local deployment reports and dependencies
+/broadcast/
+node_modules/
+
+# Docs
+docs/
+
+# Dotenv file
+.env
+.env.*
+!.env.example
