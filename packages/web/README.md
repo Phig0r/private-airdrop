@@ -24,3 +24,33 @@ The crypto build needs the [Rust/WASM toolchain](../crypto-lib/README.md). There
 The API is proxied to port 3001. Hosting needs an equivalent proxy and the COOP/COEP headers in `vite.config.js` for proof workers.
 
 Both demo modes use the admin interface. View-only mode disables writes; demo owners can manage airdrops, while withdrawals and access settings remain restricted to the super owner. See the [root README](../../README.md) for the full workflow.
+
+## Vercel API connection
+
+Add the following to `vercel.json` in Vercel's configured Root Directory (usually `packages/web` for this app). Replace `YOUR-SERVER.example` with the server's public HTTPS hostname and merge with any existing configuration before redeploying:
+
+```json
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://YOUR-SERVER.example/api/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
+        { "key": "Cross-Origin-Embedder-Policy", "value": "require-corp" }
+      ]
+    }
+  ]
+}
+```
+
+The rewrite keeps browser API calls on the frontend origin, so this configuration does not need a frontend API URL variable or browser CORS access to the server. Keep `VITE_RPC_URL` and `VITE_DIAMOND_ADDRESS` configured for the same deployment as the server. The headers preserve the isolation required by the proof workers.
+
+After redeployment, open `/api/airdrops/<existing-airdrop-id>/status` on the frontend domain. A successful request returns JSON containing `configured`, `closed` and `count`. Check `window.crossOriginIsolated` in the browser console before testing proof generation. The server does not provide a `/health` route.
+
+Reference: [Vercel external rewrites](https://vercel.com/docs/routing/rewrites).

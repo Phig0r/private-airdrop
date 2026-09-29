@@ -13,6 +13,7 @@ try {
   if (error.code !== "ENOENT") throw error;
 }
 const port = Number(process.env.PORT || 3001);
+const host = process.env.HOST || "127.0.0.1";
 if (!process.env.MONGODB_URI || !process.env.MONGODB_DATABASE ||
     !process.env.RPC_URL || !isAddress(process.env.DIAMOND_ADDRESS || "") ||
     !Number.isInteger(port) || port < 1 || port > 65535) {
@@ -33,8 +34,8 @@ try {
   if ((await contract.relayer()).toLowerCase() !== relayer.address.toLowerCase()) throw new Error("RELAYER_NOT_AUTHORIZED");
   const scope = `${chainId}_${contract.target.toLowerCase()}`;
   const server = createParticipantServer(client.db(process.env.MONGODB_DATABASE), contract, issuer, scope, relayer);
-  server.listen(port, "127.0.0.1", () => {
-    console.log(`Participant API: http://127.0.0.1:${port}`);
+  server.listen(port, host, () => {
+    console.log(`Participant API: http://${host}:${port}`);
   });
   server.on("error", async () => {
     console.error("Unable to start participant API. Check PORT.");
