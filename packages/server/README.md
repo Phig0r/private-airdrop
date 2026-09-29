@@ -36,4 +36,6 @@ Keep the service root at the repository root: the server also reads `packages/co
 
 On Render, choose a Node **Web Service**, connect `Phig0r/private-airdrop` on `main`, and leave Root Directory blank. Set `HOST=0.0.0.0`; Render supplies `PORT`. For persistent issuer files, attach a disk (requires a paid service), mount it at `/var/data`, and set `ISSUER_KEY_DIRECTORY=/var/data/issuer-keys`. Without persistent storage, restarts or deployments lose the private tier configuration. See [Render web services](https://render.com/docs/web-services) and [persistent disks](https://render.com/docs/disks).
 
-The frontend at `https://private-airdrop.vercel.app/` calls `/api/...`. Configure a Vercel external rewrite to your server's HTTPS URL, preserving the `/api/` prefix. Vite's development proxy is not used in a deployed static build. See the [web deployment guide](../web/README.md#vercel-api-connection).
+The frontend at `https://private-airdrop.vercel.app/` calls `/api/...`. The committed Vercel configuration forwards these requests to `https://private-airdrop.onrender.com`, preserving the `/api/` prefix. Vite's development proxy is not used in a deployed static build. See the [web deployment guide](../web/README.md#vercel-api-connection).
+
+Use `/api/health` as Render's health-check path. It returns `{"status":"ok"}` when the API can ping MongoDB. Startup validates the Sepolia connection and relayer; the health route does not recheck them or guarantee that a claim can be paid.

@@ -27,14 +27,14 @@ Both demo modes use the admin interface. View-only mode disables writes; demo ow
 
 ## Vercel API connection
 
-Add the following to `vercel.json` in Vercel's configured Root Directory (usually `packages/web` for this app). Replace `YOUR-SERVER.example` with the server's public HTTPS hostname and merge with any existing configuration before redeploying:
+The committed `vercel.json` forwards API requests to `https://private-airdrop.onrender.com`. Matching configurations are provided at the repository root and in `packages/web`, so Vercel uses the file at its configured Root Directory. Keep these routing and header settings aligned if either changes:
 
 ```json
 {
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://YOUR-SERVER.example/api/:path*"
+      "destination": "https://private-airdrop.onrender.com/api/:path*"
     }
   ],
   "headers": [
@@ -51,6 +51,6 @@ Add the following to `vercel.json` in Vercel's configured Root Directory (usuall
 
 The rewrite keeps browser API calls on the frontend origin, so this configuration does not need a frontend API URL variable or browser CORS access to the server. Keep `VITE_RPC_URL` and `VITE_DIAMOND_ADDRESS` configured for the same deployment as the server. The headers preserve the isolation required by the proof workers.
 
-After redeployment, open `/api/airdrops/<existing-airdrop-id>/status` on the frontend domain. A successful request returns JSON containing `configured`, `closed` and `count`. Check `window.crossOriginIsolated` in the browser console before testing proof generation. The server does not provide a `/health` route.
+After redeployment, open `https://private-airdrop.vercel.app/api/health`: it should return `{"status":"ok"}`. This checks API routing and MongoDB connectivity, not claim funding or issuer configuration. For an existing airdrop, `/api/airdrops/<existing-airdrop-id>/status` returns JSON containing `configured`, `closed` and `count`. Check `window.crossOriginIsolated` in the browser console before testing proof generation.
 
 Reference: [Vercel external rewrites](https://vercel.com/docs/routing/rewrites).

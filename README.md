@@ -12,7 +12,7 @@ It is an undergraduate protocol prototype on **Ethereum Sepolia**, not an audite
 
 | Resource | Where to start |
 | --- | --- |
-| Demo | [Run locally](#run-locally), then [explore the interface](#explore-the-interface). The read-only demo requires MetaMask on Sepolia. |
+| Demo | [Open the live app](https://private-airdrop.vercel.app/), then [explore the interface](#explore-the-interface). The read-only demo requires MetaMask on Sepolia. [Local setup](#run-locally) is also available. |
 | Technical report | [Read the technical report (PDF)](research/Private-Airdrop-Technical-Report.pdf). |
 | Architecture | [Component and trust-boundary diagram](#architecture-and-technologies) below. |
 | Test instructions | [Automated checks and manual demo procedure](#verification). |

@@ -35,6 +35,10 @@ export function createParticipantServer(db, contract, issuer, scope, relayer) {
   return createServer(async (request, response) => {
     try {
       const pathname = new URL(request.url, "http://localhost").pathname;
+      if (request.method === "GET" && pathname === "/api/health") {
+        await db.command({ ping: 1 });
+        return respond(response, 200, { status: "ok" });
+      }
       const match = /^\/api\/airdrops\/([1-9][0-9]{0,19})\/(participants|status|request-tier|save-tiers|load-tiers|prepare-tree|claim)$/.exec(pathname);
       if (!match) return respond(response, 404, { error: "NOT_FOUND" });
       const [, id, action] = match;
